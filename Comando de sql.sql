@@ -79,7 +79,7 @@ CONSTRAINT FK_FUNC FOREIGN KEY (codfunc) REFERENCES funcionario (codfunc)
 );
 
 -- EX15 – Tente apagar a tabela funcionário (apenas para ver a mensagem de erro, não usar CASCADE)
-DROP TABLE funcionario;
+-- DROP TABLE funcionario;
 
 -- EX16 – Apague a tabela telefone;
 DROP TABLE telefone;
@@ -155,3 +155,44 @@ INSERT INTO funcionario (codfunc, nomefunc, cidade, uf, coddepto, sexo) VALUES
 (4, 'AMANDA', ' Rio de Janeiro', 'RJ', 2, 'F');
 
 SELECT * FROM funcionario;
+
+SELECT * FROM curso;
+
+-- EX23 - Alterar o preço do curso de Power BI para 1000;
+UPDATE curso SET preco = 1000
+WHERE codcurso = 2;
+
+-- EX 23-B
+UPDATE curso SET preco = 1000
+WHERE nomecurso = 'Power BI';
+
+-- EX 24 – Alterar o curso de Marketing para o departamento de ADM (2);
+UPDATE curso SET coddepto  = 2
+WHERE nomecurso = 'Marketing';
+
+-- EX 25  – Alterar a carga horária do curso de Recursos Humanos para 80;
+UPDATE curso SET ch = 80
+WHERE nomecurso = 'Recursos Humanos';
+
+-- EX 25-B
+UPDATE curso SET ch = 80
+WHERE codcurso = 4;
+
+-- EX 26 – Dar 20% de aumento nos cursos da área de TI;
+UPDATE curso SET preco = preco * 1.2
+WHERE coddepto = 1;
+
+-- EX 27 – Dar 50 Reais de desconto para os cursos da área de ADM;
+UPDATE curso SET preco = preco - 50
+WHERE coddepto = 2;
+
+-- EX 28 – Conceder um desconto de 10% aos cursos com carga horária menor que 80, cujo o valor seja maior que 1000 Reais
+UPDATE curso SET preco = preco * 0.9
+WHERE ch < 80 AND preco > 1000;
+
+-- EX 29 – Apagar todos os dados da tabela funcionário;
+DELETE FROM funcionario;
+
+-- EX 30 – Deletar as matrículas realizadas após o dia 04 de abril de 2019 pela aluna Andreia;
+DELETE FROM matricula
+WHERE dtmatricula > '2019-04-04' AND matricula = 3;
